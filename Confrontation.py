@@ -42,7 +42,7 @@ class Confrontation:
             self._winner = self._participant2
             self._looser = self._participant1
 
-        #TODO: przkazzac winnera do nastepnej konfornatacji
+        #TODO: pass winner to next confrontation
         pass
 
    
