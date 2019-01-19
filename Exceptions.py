@@ -1,0 +1,2 @@
+class NoSuchParticipant(Exception):
+    pass

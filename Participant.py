@@ -4,13 +4,15 @@ class Participant:
     Represenation of participant in grpah.
 
     Atributes:
-    _name
+    #  _name
 
     Methods:
-    __init__(name=None)
-    getName()
-    setName()
+    + __init__(name=None)
+    + getName() : str
+    + setName(str name) : void
 
+    Unfortunetly name is treated like a id number. 
+    Must be unrepeatable in sets of participants!
     """
 
     def __init__(self, name=None):

@@ -1,8 +1,11 @@
 from Participant import *
-print("HelloWorld!")
+from Graph import *
+from termcolor import colored
+print("HelloWorld!\n\n")
 
 
 # Tests participant:
+print("Participants tests:\n{}".format(20*'-'))
 participant = Participant("Andrzej")
 print(participant.getName())
 participant2 = Participant()
@@ -13,4 +16,83 @@ try:
     participant2.setName(12)
 except ValueError:
     print("Wrong type - test ok")
+print()
 # ------------------------------------------------
+
+# Test Graph:
+print("Graph tests:\n{}" .format(20*"-"))
+
+print(colored("Creating participants...", "green"), end=" ")
+#:
+participant0 = Participant("Andrzej")
+participant1 = Participant("Adam")
+participant2 = Participant("Jacek")
+participant3 = Participant("Mariusz")
+participant4 = Participant("Piotr")
+participant5 = Participant("Paweł")
+#.
+print(colored("ok", "green"))
+
+print(colored("Creating graph...", "green"),end=" ")
+#:
+graph = Graph()
+#.
+print(colored("ok", "green"))
+
+print(colored("Adding participants to graph...", "green"), end=" ")
+#:
+graph.addParticipant(participant0)
+graph.addParticipant(participant1)
+graph.addParticipant(participant2)
+graph.addParticipant(participant3)
+graph.addParticipant(participant4)
+graph.addParticipant(participant5)
+#.
+print(colored("ok", "green"))
+
+print(colored("Printing the graph out...", "green"))
+#:
+graph.printParticipants()
+#.
+print(colored("ok", "green"))
+
+print(colored("Deleting participants...", "green"))
+graph.printParticipants()
+graph.deleteParticipant("Andrzej")
+print(colored("ok", "green"))
+graph.deleteParticipant("Piotr")
+print(colored("ok", "green"))
+graph.printParticipants()
+print(colored("Deleting non-existing participants...", "green"))
+try:
+    graph.deleteParticipant("Guncel")
+except NoSuchParticipant as e:
+    print("No such participant in set.")    
+    print(colored("ok", "green"))
+print()
+
+print(colored("Getting participant from graph...", "green"))
+part=graph.getParticipant("Jacek")
+print(part.getName())
+print(colored("ok", "green"))
+part.setName("Bolko")
+graph.printParticipants()
+print(colored("ok", "green"))
+print()
+
+print(colored("Clearing graph", "green"))
+graph.printParticipants()
+graph.clearGraph()
+print(colored("ok", "green"))
+graph.printParticipants()
+print(colored("ok", "green"))
+# ---------------------------------------------------
+
+# import gi
+# gi.require_version('Gtk', '3.0')
+# from gi.repository import Gtk
+
+# win = Gtk.Window()
+# win.connect("destroy", Gtk.main_quit)
+# win.show_all()
+# Gtk.main()
