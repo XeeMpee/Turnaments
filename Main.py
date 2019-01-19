@@ -129,6 +129,7 @@ graph.printConfrontations()
 print(colored("ok", "green"))
 
 
+
 # ---------------------------------------------------
 
 # import gi

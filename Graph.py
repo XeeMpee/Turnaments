@@ -77,7 +77,7 @@ class Graph:
             del tmpLevels
             del count
 
-            # Creating confrontations:
+            # Creating empty confrontations:
             tmpNum = len(self._participants)
             tmpNum = tmpNum // 2
             for i in range(0, self._levels):
@@ -86,6 +86,13 @@ class Graph:
                     self._confrontations[i].append(Confrontation())
                 tmpNum = tmpNum // 2
 
+            # Setting confrontations:
+            for i in range(0, self._levels-2):
+                for j in self._confrontations[i]:
+                    index = self._confrontations[i].index(j)
+                    indexOfNextLevel = index // 2
+                    print("index: {}, nlindex: {}" .format(index, indexOfNextLevel))
+                    j.assignNextConfrontation(self._confrontations[i+1][indexOfNextLevel])
 
     @staticmethod
     def __isPowerOfTwo(number) -> bool:
@@ -111,6 +118,7 @@ class Graph:
             print("\n---")
             for j in i:
                 print("confr", end=" ")
+                
 
     def levels(self) -> int:
         return self._levels

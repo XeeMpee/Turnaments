@@ -3,3 +3,6 @@ class NoSuchParticipant(Exception):
 
 class InadequateNumberOfParticipants(Exception):
     pass
+
+class OverridingParticipantError(Exception):
+    pass
