@@ -86,6 +86,49 @@ graph.clearGraph()
 print(colored("ok", "green"))
 graph.printParticipants()
 print(colored("ok", "green"))
+
+
+
+graph.addParticipant(Participant("Adam"))
+graph.addParticipant(Participant("Gwiedymin"))
+graph.addParticipant(Participant("Witold"))
+graph.addParticipant(Participant("Kazimierz"))
+graph.addParticipant(Participant("Delfin"))
+graph.addParticipant(Participant("Otto"))
+graph.addParticipant(Participant("Henryk"))
+graph.addParticipant(Participant("Bolko"))
+graph.addParticipant(Participant("Zygmunt"))
+graph.addParticipant(Participant("Boleslav"))
+graph.addParticipant(Participant("Guncel"))
+graph.addParticipant(Participant("Peszko"))
+graph.addParticipant(Participant("Pelka"))
+graph.addParticipant(Participant("Manir"))
+graph.addParticipant(Participant("Strucker"))
+graph.addParticipant(Participant("Miner"))
+graph.printParticipants()
+print(colored("Creating confrontations...", "green"))
+graph.createConfrontations()
+print(colored("ok", "green"))
+
+graph.deleteParticipant("Otto")
+try:
+    graph.createConfrontations()
+except InadequateNumberOfParticipants as e:
+    print("InadequateNumberOfParticipants")
+    print(colored("ok", "green"))
+    pass
+
+print(colored("Getting number of levels", "green"))
+print(graph.levels())
+print(colored("ok", "green"))
+print()
+
+
+print(colored("Printing confrontations...", "green"))
+graph.printConfrontations()
+print(colored("ok", "green"))
+
+
 # ---------------------------------------------------
 
 # import gi
