@@ -1,6 +1,7 @@
 from Participant import *
 from enum import Enum
 from Exceptions import OverridingParticipantError
+from Exceptions import UnsetNextConfrontation
 
 class ParticipantsEnum(Enum):
     PARTICIPANT1 = 1
@@ -20,6 +21,11 @@ class Confrontation:
     Methods:
     + doConfronatation() : void 
     + assignNextConfrontation() | "Assigns winner confrontation"
+    + setParticipant1(Participant p) : void
+    + setParticipant2(Participant p) : void
+    + doConfrontation(ParticipantEnum pe)
+    + getParticipant1() : Participant
+    + getParticipant2() : Participant
     """
 
     def __init__(self):
@@ -34,7 +40,9 @@ class Confrontation:
     def doConfrontation(self, participante):
         if(not isinstance(participante,ParticipantsEnum)):
             raise ValueError("Parametr participante is {} | must be instance of ParticipanteEnum" .format(participante))
-        
+        if(self._nextConfrontation is None):
+            raise UnsetNextConfrontation
+
         if(participante == ParticipantsEnum.PARTICIPANT1):
             self._winner = self._participant1
             self._looser = self._participant2
@@ -42,7 +50,14 @@ class Confrontation:
             self._winner = self._participant2
             self._looser = self._participant1
 
-        #TODO: pass winner to next confrontation
+        try:
+            self._nextConfrontation.setParticipant1(self._winner)
+        except OverridingParticipantError:
+            try:
+                self._nextConfrontation.setParticipant2(self._winner)
+            except OverridingParticipantError:
+                raise OverridingParticipantError
+            
         pass
 
    
@@ -71,3 +86,9 @@ class Confrontation:
         if(not isinstance(participant,Participant)):
             raise ValueError("participant is {} | must be Participant!" .format(type(participant)))
         self._participant2 = participant
+
+    def getParticipant1(self) -> Participant:
+        return self._participant1
+
+    def getParticipant2(self) -> Participant:
+        return self._participant2

@@ -6,3 +6,6 @@ class InadequateNumberOfParticipants(Exception):
 
 class OverridingParticipantError(Exception):
     pass
+
+class UnsetNextConfrontation(Exception):
+    pass

@@ -94,6 +94,15 @@ class Graph:
                     print("index: {}, nlindex: {}" .format(index, indexOfNextLevel))
                     j.assignNextConfrontation(self._confrontations[i+1][indexOfNextLevel])
 
+            # Setting first level participants:
+            index=0; 
+            for i in self._confrontations[0]:
+                i.setParticipant1(self._participants[index])
+                index += 1
+                i.setParticipant2(self._participants[index])
+                index += 1
+
+
     @staticmethod
     def __isPowerOfTwo(number) -> bool:
         sqrt = number ** (1/2)
@@ -118,6 +127,26 @@ class Graph:
             print("\n---")
             for j in i:
                 print("confr", end=" ")
+    
+    def printGraph(self):
+        for i in self._confrontations:
+            for j in i:
+                con = False
+                if(j.getParticipant1() is None):
+                    print("None|", end="")
+                    con = True
+                if(j.getParticipant2() is None):
+                    print("None", end="   ")
+                    con = True
+                if con is True:
+                    continue
+
+                print(j.getParticipant1().getName(), end="|")
+                print(j.getParticipant2().getName(), end="   ")
+            print("\n")
+            print(20*'-')
+            
+        pass
                 
 
     def levels(self) -> int:

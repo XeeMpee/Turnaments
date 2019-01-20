@@ -110,13 +110,13 @@ print(colored("Creating confrontations...", "green"))
 graph.createConfrontations()
 print(colored("ok", "green"))
 
-graph.deleteParticipant("Otto")
-try:
-    graph.createConfrontations()
-except InadequateNumberOfParticipants as e:
-    print("InadequateNumberOfParticipants")
-    print(colored("ok", "green"))
-    pass
+# graph.deleteParticipant("Otto")
+# try:
+#     graph.createConfrontations()
+# except InadequateNumberOfParticipants as e:
+#     print("InadequateNumberOfParticipants")
+#     print(colored("ok", "green"))
+#     pass
 
 print(colored("Getting number of levels", "green"))
 print(graph.levels())
@@ -128,6 +128,10 @@ print(colored("Printing confrontations...", "green"))
 graph.printConfrontations()
 print(colored("ok", "green"))
 
+
+print(colored("Printing graph...", "green"))
+graph.printGraph()
+print(colored("ok", "green"))
 
 
 # ---------------------------------------------------
