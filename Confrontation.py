@@ -94,11 +94,14 @@ class Confrontation:
             raise ValueError("participant is {} | must be Participant!" .format(type(participant)))
         self._participant2 = participant
 
+   
     def getParticipant1(self) -> Participant:
         return self._participant1
 
+
     def getParticipant2(self) -> Participant:
         return self._participant2
+
 
     def printConfrontation(self):
         print("Confrontation:")

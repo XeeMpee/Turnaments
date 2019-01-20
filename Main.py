@@ -1,5 +1,6 @@
 from Participant import *
 from Graph import *
+from Views.MainWindow import *
 from termcolor import colored
 print("HelloWorld!\n\n")
 
@@ -157,17 +158,7 @@ except UnsetParticipant:
 graph.printGraph()
 
 print(colored("ok", "green"))
-
-
-
-
 # ---------------------------------------------------
 
-# import gi
-# gi.require_version('Gtk', '3.0')
-# from gi.repository import Gtk
-
-# win = Gtk.Window()
-# win.connect("destroy", Gtk.main_quit)
-# win.show_all()
-# Gtk.main()
+mainWindow = MainWindow()
+mainWindow.run()

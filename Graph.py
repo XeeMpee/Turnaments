@@ -12,6 +12,7 @@ class Graph:
     # _levels : int | number of graph levels
 
     Methods:
+    + setParticipants(Participant[] participantsList) : void
     + addParticipant(str name) : void 
     + deleteParticipant(str name) : void | raise NoSuchParticipant
     + getParticipant(str name) : Participant
@@ -33,12 +34,16 @@ class Graph:
         pass
 
 
+    def setParticipants(self, participantsList):
+        self._participants = participantsList
+
     def addParticipant(self, participant):
         if not isinstance(participant, Participant):
             raise ValueError("Participant is {0} |  must be Participant!" .format(type(participant)))
         else:
             self._participants.append(participant)
 
+   
     def deleteParticipant(self, name):
         if not isinstance(name, str):
             raise ValueError
@@ -139,7 +144,6 @@ class Graph:
     def printGraph(self):
         for i in self._confrontations:
             for j in i:
-            
                 try:
                     print(j.getParticipant1().getName(), end="|")
                 except AttributeError:
