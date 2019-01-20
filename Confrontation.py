@@ -2,10 +2,12 @@ from Participant import *
 from enum import Enum
 from Exceptions import OverridingParticipantError
 from Exceptions import UnsetNextConfrontation
+from Exceptions import UnsetParticipant
 
 class ParticipantsEnum(Enum):
     PARTICIPANT1 = 1
     PARTICIPANT2 = 2
+
 
 class Confrontation:
     """
@@ -26,6 +28,7 @@ class Confrontation:
     + doConfrontation(ParticipantEnum pe)
     + getParticipant1() : Participant
     + getParticipant2() : Participant
+    + printConfrontation() : void
     """
 
     def __init__(self):
@@ -44,9 +47,13 @@ class Confrontation:
             raise UnsetNextConfrontation
 
         if(participante == ParticipantsEnum.PARTICIPANT1):
+            if(isinstance(self._participant1, type(None))):
+                raise UnsetParticipant("None partcipant cant win!")
             self._winner = self._participant1
             self._looser = self._participant2
-        if(participante == ParticipantsEnum.PARTICIPANT2):
+        elif(participante == ParticipantsEnum.PARTICIPANT2):
+            if(isinstance(self._participant2, type(None))):
+                raise UnsetParticipant("None partcipant cant win!")
             self._winner = self._participant2
             self._looser = self._participant1
 
@@ -75,7 +82,7 @@ class Confrontation:
             raise OverridingParticipantError
 
         if(not isinstance(participant,Participant)):
-            raise ValueError("participant is {} | must be Participant!" .format(type(participant)))
+           raise ValueError("participant is {} | must be Participant!" .format(type(participant)))
         self._participant1 = participant
 
     
@@ -92,3 +99,14 @@ class Confrontation:
 
     def getParticipant2(self) -> Participant:
         return self._participant2
+
+    def printConfrontation(self):
+        print("Confrontation:")
+        try:
+            print("Participant1: {}".format(self._participant1.getName()))
+        except AttributeError:
+            print("Participant1: None")
+        try:
+            print("Participant2: {}" .format(self._participant2.getName()))
+        except AttributeError:
+            print("Participant2: None")

@@ -134,6 +134,33 @@ graph.printGraph()
 print(colored("ok", "green"))
 
 
+print(colored("Getting confrontation...", "green"))
+confrontation = graph.getConfrontation(0,3)
+confrontation.printConfrontation()
+print(colored("ok", "green"))
+
+
+print(colored("Do confrontation...", "green"))
+confrontation.doConfrontation(ParticipantsEnum.PARTICIPANT1)
+graph.printGraph() 
+print(colored("ok", "green"))
+
+print(colored("Do confrontation...", "green"))
+graph.getConfrontation(0,0).doConfrontation(ParticipantsEnum.PARTICIPANT2)
+graph.getConfrontation(0,1).doConfrontation(ParticipantsEnum.PARTICIPANT1)
+graph.getConfrontation(1,0).doConfrontation(ParticipantsEnum.PARTICIPANT1)
+
+try:
+    graph.getConfrontation(1,1).doConfrontation(ParticipantsEnum.PARTICIPANT2)
+except UnsetParticipant:
+    pass
+graph.printGraph()
+
+print(colored("ok", "green"))
+
+
+
+
 # ---------------------------------------------------
 
 # import gi

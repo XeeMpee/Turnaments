@@ -1,3 +1,4 @@
+
 class NoSuchParticipant(Exception):
     pass
 
@@ -9,3 +10,10 @@ class OverridingParticipantError(Exception):
 
 class UnsetNextConfrontation(Exception):
     pass
+
+class UnsetParticipant(Exception):
+    def __init__(self, message):
+        super(UnsetParticipant, self).__init__(message)
+
+    pass
+

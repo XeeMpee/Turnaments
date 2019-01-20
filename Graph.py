@@ -17,7 +17,8 @@ class Graph:
     + getParticipant(str name) : Participant
 
     + createConfrontations() : void
-    - static __isPowerOfTwo(int) : bool
+    - static __isPowerOfTwo(int) : booli
+    + getConfrontation(int graphLevel, string name)
 
     + clearGraph() : void
 
@@ -111,6 +112,11 @@ class Graph:
         else:
             return False
 
+    
+    def getConfrontation(self, graphLevel, number) -> Confrontation:
+        if(not isinstance(graphLevel, int) or not isinstance(number, int)):
+            raise ValueError("graphLevel: {}, number {} | must be integers!".format(graphLevel,number))
+        return self._confrontations[graphLevel][number]
 
     
     def clearGraph(self):
@@ -122,27 +128,28 @@ class Graph:
         for i in self._participants:
             print(i.getName())
 
+
     def printConfrontations(self):
         for i in self._confrontations:
             print("\n---")
             for j in i:
                 print("confr", end=" ")
-    
+
+
     def printGraph(self):
         for i in self._confrontations:
             for j in i:
-                con = False
-                if(j.getParticipant1() is None):
+            
+                try:
+                    print(j.getParticipant1().getName(), end="|")
+                except AttributeError:
                     print("None|", end="")
-                    con = True
-                if(j.getParticipant2() is None):
+            
+                try:
+                    print(j.getParticipant2().getName(), end="   ")
+                except AttributeError:
                     print("None", end="   ")
-                    con = True
-                if con is True:
-                    continue
-
-                print(j.getParticipant1().getName(), end="|")
-                print(j.getParticipant2().getName(), end="   ")
+            
             print("\n")
             print(20*'-')
             

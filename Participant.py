@@ -18,8 +18,10 @@ class Participant:
     def __init__(self, name=None):
         self.setName(name)
 
+    
     def getName(self) -> str:
         return self._name
+
 
     def setName(self, name) -> None:
          
