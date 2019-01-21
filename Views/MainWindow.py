@@ -49,6 +49,10 @@ class MainWindow():
         self._participantsvViewPort.add(self.__listBox)
 
 
+        # Disactive AcceptButton:
+        self.__enteringAreaSetSensitive(False)
+
+
     def run(self):
 
         self._window.show_all()
@@ -57,29 +61,72 @@ class MainWindow():
 
     def __accept_button_clicked(self, button):
         print("Accept button clicked")
+        self.__addButtonSetSensitive(True)
+        self.__deleteButtonSetSensitive(True)
+        self.__modifyButtonSetSensitive(True)
+        self.__enteringAreaSetSensitive(False)
+        self.__clearEntry()
 
     
     def __add_button_clicked(self,button):
         print("Add button clicked")
-        entry = self._builder.get_object("entry")
-        text = entry.get_text()
-        print("Value:|{}|" .format(text))
+        # entry = self._builder.get_object("entry")
+        # text = entry.get_text()
+        # print("Value:|{}|" .format(text))
 
-        if(text != ""):
-            listboxRow = Gtk.ListBoxRow()
-            listboxRow.add(Gtk.Label(text))
-            self.__listBox.add(listboxRow)
-            self._insertController.addParticipant(Participant(text))
-            self._window.show_all()
+        # if(text != ""):
+        #     listboxRow = Gtk.ListBoxRow()
+        #     listboxRow.add(Gtk.Label(text))
+        #     listboxRow.set_size_request(60,60)
+        #     if(self._insertController.isParticipant(text)):
+        #         print("Participant already exists!")
+        #     else:
+        #         self.__listBox.add(listboxRow)
+        #         self._insertController.addParticipant(Participant(text))
+        #         self._window.show_all()
+        
+        self.__enteringAreaSetSensitive(True)
+        self.__deleteButtonSetSensitive(False)
+        self.__modifyButtonSetSensitive(False)
 
-
+    
     def __modify_button_clicked(self, button):
         print("Modify button clicked")
-
+        self.__addButtonSetSensitive(False)
+        self.__deleteButtonSetSensitive(False)
+        self.__enteringAreaSetSensitive(True)
 
     def __delete_button_clicked(self, button):
         print("Delete button clicked")
+        self.__addButtonSetSensitive(False)
+        self.__modifyButtonSetSensitive(False)
+        self.__enteringAreaSetSensitive(True)
 
+
+    def __enteringAreaSetSensitive(self, boolean=True):
+        acceptButton=self._builder.get_object("accept_button")
+        enteringArea=self._builder.get_object("entry")
+        acceptButton.set_sensitive(boolean)
+        enteringArea.set_sensitive(boolean)
+
+
+    def __addButtonSetSensitive(self, boolean=True):
+        addButton=self._builder.get_object("add_button")
+        addButton.set_sensitive(boolean)
+
+    
+    def __deleteButtonSetSensitive(self, boolean=True):
+        deleteButton=self._builder.get_object("delete_button")
+        deleteButton.set_sensitive(boolean)
+
+
+    def __modifyButtonSetSensitive(self, boolean=True):
+        modifyButton=self._builder.get_object("modify_button")
+        modifyButton.set_sensitive(boolean)
+
+    def __clearEntry(self):
+        entry = self._builder.get_object("entry")
+        entry.set_text("")
 
     def __start_turnament_button_clicked(self, button):
         print("Start turnament button clicked")

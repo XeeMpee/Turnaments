@@ -15,7 +15,8 @@ class InsertStateController(StateController):
     Methods:
     + addParticipant(Participant participant) : void
     + deleteParticipant(string name) : void
-    + getParticipant() : Participant
+    + getParticipant(string name) : Participant
+    + isParticipant(string name) : bool 
     + modifyParticipant(str name1, str name2) : void
     + createGraph() : void
     """
@@ -60,11 +61,24 @@ class InsertStateController(StateController):
                 raise NoSuchParticipant
     
     
+    def isParticipant(self, name) -> bool:
+        if(not isinstance(name,str)):
+            raise ValueError
+        
+        try:
+            self.getParticipant(name)
+        except NoSuchParticipant:
+            return False
+        
+        return True
+    
+    
     def modifyParticipant(self, name1, name2):
         for i in self._participants:
             if i.getName() == name1:
                 i.setName(name2)
         
+    
     def createGraph(self):
         if(self._graph == None):
             self._graph = Graph()
