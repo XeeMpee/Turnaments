@@ -1,4 +1,4 @@
-class StateController(object):
+class StateController:
     
     """ 
     Abstract class of states controllers 

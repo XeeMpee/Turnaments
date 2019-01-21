@@ -1,4 +1,4 @@
-from StateController import *
+from Controllers.StateController import *
 from Participant import *
 from Exceptions import NoSuchParticipant
 from Graph import *
